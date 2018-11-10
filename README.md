@@ -6,9 +6,9 @@ Allure is integrated as the Test Reporter.
 
 
 ## To Execute the test:
-Run `yarn run setup`
-Run `yarn run start`
-Run `yarn run test:cucumber`
+Run `yarn run setup`  
+Run `yarn run start`  
+Run `yarn run test:cucumber`  
 or any other script defined in 'package.json'
 
 ## To generate test report in allure:
