@@ -124,11 +124,12 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
-    reporters: ['junit','allure'],
+    reporters: ['allure'],
+    // reporters: ['junit','allure'],
     reporterOptions: {
-        junit: {
-            outputDir: './reports/junit'
-        },
+        // junit: {
+        //     outputDir: './reports/junit'
+        // },
         allure: {
             outputDir: './reports/allure-results'
         }
@@ -147,7 +148,9 @@ exports.config = {
         source: true,       // <boolean> hide source uris
         profile: [],        // <string[]> (name) specify the profile to use
         strict: false,      // <boolean> fail if there are any undefined or pending steps
-        tags: [],           // <string[]> (expression) only execute the features or scenarios with tags matching the expression
+        // tagExpression: '@Test or @Sujeet and not @NotRun', //(expression) only execute the features or scenarios with tags matching the expression
+        tagsInTitle: true,
+        // tags: ['@Test'],           // <string[]> (expression) only execute the features or scenarios with tags matching the expression
         timeout: 20000,     // <number> timeout for step definitions
         ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
     },

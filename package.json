@@ -1,9 +1,9 @@
 {
-  "name": "connvex-ui-test-webdriver-io",
+  "name": "ui-test-auto-webdriver-io",
   "version": "1.0.0",
   "description": "UI Test Automation Framework",
   "main": "index.js",
-  "author": "Sujeet Kumar <sujeet.kumar@fleetcomplete.com>",
+  "author": "Sujeet Kumar <sujeet.kr@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
     "assert": "^1.4.1",
@@ -27,6 +27,7 @@
     "setup": "selenium-standalone install",
     "start": "selenium-standalone start",
     "test:cucumber": "./node_modules/.bin/cucumber-js",
-    "test:regression": "./node_modules/.bin/wdio ./wdio.conf.js"
+    "test:regression": "./node_modules/.bin/wdio --cucumberOpts.tagExpression='@Regression or @Sujeet and not @BadTest' ./wdio.conf.js",
+    "test:check": "./node_modules/.bin/wdio --cucumberOpts.tagExpression='@Test and not @BadTest' ./wdio.conf.js"
   }
 }
