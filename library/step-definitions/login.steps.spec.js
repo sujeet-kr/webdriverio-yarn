@@ -2,11 +2,11 @@
 
 const { Given, When, Then } = require('cucumber');
 const { expect } = require('chai');
-var LoginPage = require('../pages/login.page');
-var LandingPage = require('../pages/landing.page');
+const LoginPage = require('../pages/login.page');
+const LandingPage = require('../pages/landing.page');
 
 Given('I am at the login page of the application', function () {
-    console.log("This is the Given test");
+    console.log("This is the Given test for Browser test");
 });
 
 When('I login to the application', function () {

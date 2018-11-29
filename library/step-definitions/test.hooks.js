@@ -1,5 +1,5 @@
-var {AfterAll, BeforeAll} = require('cucumber');
-var {After, Before} = require('cucumber');
+const {AfterAll, BeforeAll} = require('cucumber');
+const {After, Before} = require('cucumber');
 
 
 
