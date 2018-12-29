@@ -1,4 +1,4 @@
-// import Page from './page'
+
 var Page = require ('./page');
 
 class LoginPage extends Page {
@@ -6,13 +6,11 @@ class LoginPage extends Page {
     get password() { return browser.element('//input[@id="password"]'); }
     get loginButton() { return browser.element('//button[@type="submit"]/i[@class="fa fa-2x fa-sign-in"]')}
 
-    open() {
-        super.open("http://the-internet.herokuapp.com/login");
-    }
-
     loginToApplication() {
-        this.username.setValue('tomsmith');
-        this.password.setValue('SuperSecretPassword!');
+        // this.username.setValue('tomsmith');
+        this.username.setValue(super.getCredentialsData(userCred).username);
+        // this.password.setValue('SuperSecretPassword!');
+        this.password.setValue(super.getCredentialsData(userCred).password);
         this.loginButton.click();
     }
 }

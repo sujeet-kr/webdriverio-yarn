@@ -1,0 +1,5 @@
+dev:
+  ui_login_url: http://the-internet.herokuapp.com/login
+
+staging:
+  ui-login-url: http://staging.the-internet.herokuapp.com/login

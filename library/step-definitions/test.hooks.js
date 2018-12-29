@@ -1,6 +1,6 @@
 const {AfterAll, BeforeAll} = require('cucumber');
 const {After, Before} = require('cucumber');
-
+const YamlEnvRead = require('../support/yaml-reader');
 
 
 // Synchronous
@@ -21,12 +21,10 @@ AfterAll(function () {
 return Promise.resolve()
 });
 
-
-
-
-
 Before(function () {
   // This hook will be executed before all scenarios
+  const executionEnvData = YamlEnvRead.yamlDataAsObject('resources/env-url.yml');
+  browser.url(executionEnvData.dev.ui_login_url);
 });
 
 Before({tags: "@foo"}, function () {
@@ -44,4 +42,11 @@ Before({tags: "@foo or @bar"}, function () {
 // You can use the following shorthand when only specifying tags
 Before("@foo", function () {
   // This hook will be executed before scenarios tagged with @foo
+});
+
+After({tags: "@ReloadSession"}, function () {
+  browser.reload();
+});
+
+After(function () {
 });
