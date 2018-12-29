@@ -1,0 +1,5 @@
+dev:
+  ui_login_url: https://dev.sampleapp.com
+
+staging:
+  ui-login-url: https://staging.sampleapp.com
