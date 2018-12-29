@@ -1,5 +1,5 @@
 dev:
-  ui_login_url: https://dev.sampleapp.com
+  ui_login_url: http://the-internet.herokuapp.com/login
 
 staging:
-  ui-login-url: https://staging.sampleapp.com
+  ui-login-url: http://staging.the-internet.herokuapp.com/login
