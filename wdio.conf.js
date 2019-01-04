@@ -1,10 +1,43 @@
 
 const tagFileSelector = require('./tagFileSelector');
+const desiredCapabilities = require('./library/support/desiredcapabilities');
+const argv = require('yargs').argv;
 
 exports.config = {
     // debug: true,
     // execArgv: ['--debug=127.0.0.1:5859'],
     //
+    // =====================
+    // Server Configurations
+    // =====================
+    // Host address of the running Selenium server. This information is usually obsolete as
+    // WebdriverIO automatically connects to localhost. Also if you are using one of the
+    // supported cloud services like Sauce Labs, Browserstack or Testing Bot you also don't
+    // need to define host and port information because WebdriverIO can figure that out
+    // according to your user and key information. However if you are using a private Selenium
+    // backend you should define the host address, port, and path here.
+    //
+    host: '127.0.0.1',
+    port: 4444,
+    path: '/wd/hub',
+    //
+    // =================
+    // Service Providers
+    // =================
+    // WebdriverIO supports Sauce Labs, Browserstack and Testing Bot (other cloud providers
+    // should work too though). These services define specific user and key (or access key)
+    // values you need to put in here in order to connect to these services.
+    //
+    // user: 'webdriverio',
+    // key:  'xxxxxxxxxxxxxxxx-xxxxxx-xxxxx-xxxxxxxxx',
+    //
+    // If you run your tests on SauceLabs you can specify the region you want to run your tests
+    // in via the `region` property. Available short handles for regions are:
+    // us: us-west-1 (default)
+    // eu: eu-central-1
+    // region: 'us',
+    // 
+    // 
     // ==================
     // Specify Test Files
     // ==================
@@ -44,14 +77,9 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 3,
-        //
-        browserName: 'chrome'
-    }],
+    capabilities: desiredCapabilities.executionCapabilities(),
+    // Additional list of node arguments to use when starting child processes
+    execArgv: [],
     //
     // ===================
     // Test Configurations
@@ -83,7 +111,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    // baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -156,7 +184,6 @@ exports.config = {
         strict: false,      // <boolean> fail if there are any undefined or pending steps
         // tagExpression: '@Test or @Sujeet and not @NotRun', //(expression) only execute the features or scenarios with tags matching the expression
         tagsInTitle: true,
-        // tags: ['@Test'],           // <string[]> (expression) only execute the features or scenarios with tags matching the expression
         timeout: 20000,     // <number> timeout for step definitions
         ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
     },
@@ -174,8 +201,14 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        let envToExecute = argv.env;
+        if(envToExecute){
+            if (!(['dev', 'qa', 'prod'].includes(envToExecute))){
+                    throw 'Environment name is not valid. Should be one of dev/qa/prod';
+            }
+        }
+    },
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
      * to manipulate configurations depending on the capability or spec.

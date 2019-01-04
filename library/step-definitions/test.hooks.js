@@ -1,6 +1,7 @@
 const {AfterAll, BeforeAll} = require('cucumber');
 const {After, Before} = require('cucumber');
 const YamlEnvRead = require('../support/yaml-reader');
+const argv = require('yargs').argv;
 
 
 // Synchronous
@@ -24,7 +25,11 @@ return Promise.resolve()
 Before(function () {
   // This hook will be executed before all scenarios
   const executionEnvData = YamlEnvRead.yamlDataAsObject('resources/env-url.yml');
-  browser.url(executionEnvData.dev.ui_login_url);
+  let envToExecute = argv.env;  
+  if(!envToExecute){
+    envToExecute = 'dev';
+  }
+  browser.url(executionEnvData[envToExecute].ui_login_url);
 });
 
 Before({tags: "@foo"}, function () {

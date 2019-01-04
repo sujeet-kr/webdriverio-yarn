@@ -6,6 +6,7 @@
   "author": "Sujeet Kumar <sujeet.kr@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/webdriverio": "^4.13.0",
     "@wdio/selenium-standalone-service": "^5.0.0-beta.5",
     "assert": "^1.4.1",
     "chai": "^4.2.0",
@@ -25,13 +26,14 @@
     "wdio-json-reporter": "^0.4.0",
     "wdio-junit-reporter": "^0.4.4",
     "wdio-selenium-standalone-service": "0.0.10",
-    "webdriverio": "^4.14.0"
+    "webdriverio": "^4.14.0",
+    "yargs": "^12.0.5"
   },
   "scripts": {
     "setup": "selenium-standalone install",
     "start": "selenium-standalone start",
     "test:cucumber": "./node_modules/.bin/cucumber-js",
     "test:regression": "TAGS='@Regression' ./node_modules/.bin/wdio --cucumberOpts.tagExpression='@Regression or @Sujeet and not @BadTest' ./wdio.conf.js",
-    "test:check": "TAGS='@Test' ./node_modules/.bin/wdio --cucumberOpts.tagExpression='@Test and not @BadTest' ./wdio.conf.js"
+    "test:check": "TAGS='@Test' ./node_modules/.bin/wdio --cucumberOpts.tagExpression='@Test and not @BadTest' --browsers='chrome,firefox' --env='dev' ./wdio.conf.js"
   }
 }
