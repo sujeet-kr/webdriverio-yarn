@@ -15,6 +15,6 @@ or any other script defined in 'package.json'
 Run `./generateAllureReport.sh`
 
 ## To run a specific test tagged with a particular key
-Run `./node_modules/.bin/wdio --cucumberOpts.tagExpression='@Regression or @Sujeet and not @BadTest' ./wdio.conf.js"`
+Run `"TAGS='@Test' ./node_modules/.bin/wdio --cucumberOpts.tagExpression='@Test and not @BadTest' --browsers='chrome,firefox' --env='dev' ./wdio.conf.js"`
 
 
