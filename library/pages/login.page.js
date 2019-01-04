@@ -2,8 +2,8 @@
 var Page = require ('./page');
 
 class LoginPage extends Page {
-    get username() { return browser.element('//input[@id="username"]'); }
-    get password() { return browser.element('//input[@id="password"]'); }
+    get username() { return browser.element('[id=username]'); }
+    get password() { return browser.element('[id=password]'); }
     get loginButton() { return browser.element('//button[@type="submit"]/i[@class="fa fa-2x fa-sign-in"]')}
 
     loginToApplication() {
